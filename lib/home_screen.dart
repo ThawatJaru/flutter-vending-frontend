@@ -8,27 +8,33 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  Widget main_page() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[],
-        ),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: const Text('Pingprice Admin'),
-      ),
       body: Center(
-        child: main_page(),
+        child: Column(children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.only(left: 15.0),
+                //color: Colors.red,
+                height: size.height * 0.1,
+                child: const Text('Discover your Plants',
+                    style: TextStyle(
+                      fontSize: 42,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    )),
+              ),
+            ],
+          ),
+        ]),
       ),
     );
   }
