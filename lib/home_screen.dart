@@ -8,6 +8,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  TextEditingController searchPlant = TextEditingController();
+
+  @override
+  void dispose() {
+    searchPlant.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,18 +53,18 @@ class _HomeScreen extends State<HomeScreen> {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(3.0),
               margin: const EdgeInsets.only(left: 25),
-              child: const TextField(
-                //controller: controller,
+              child: TextField(
+                controller: searchPlant,
                 cursorColor: Colors.black,
                 //cursorWidth: 35,
                 //cursorHeight: 35,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 35,
                   fontWeight: FontWeight.w300,
                   fontStyle: FontStyle.normal,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   icon: Icon(Icons.search, size: 50, color: Colors.green),
                   isDense: true,
                   border: InputBorder.none,
@@ -69,6 +77,50 @@ class _HomeScreen extends State<HomeScreen> {
                 ),
                 // onChanged:
               ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 20.0),
+              padding: const EdgeInsets.only(left: 25.0),
+              // color: Colors.red,
+              height: size.height * 0.1,
+              child: Row(
+                //mainAxisAlignment: MainAxisAlignment.start,
+                children: const <Widget>[
+                  Text(
+                    'Plant Categories',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 33.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.red,
+              //width: 100,
+              height: size.height * 0.17,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      width: size.width * 0.086,
+                      height: size.height * 0.15,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      width: 50,
+                      height: 50,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      width: 50,
+                      height: 50,
+                      color: Colors.white,
+                    ),
+                  ]),
             ),
           ],
         ),
