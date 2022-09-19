@@ -79,7 +79,7 @@ class _HomeScreen extends State<HomeScreen> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 20.0),
+              margin: const EdgeInsets.only(top: 13.0),
               padding: const EdgeInsets.only(left: 25.0),
               // color: Colors.red,
               height: size.height * 0.1,
@@ -103,49 +103,107 @@ class _HomeScreen extends State<HomeScreen> {
               //width: 100,
               height: size.height * 0.18,
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 5.0),
-                      width: size.width * 0.2,
-                      height: size.height * 0.18,
-                      //color: Colors.white,
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            // color: Colors.black,
-                            margin: const EdgeInsets.only(bottom: 5.0),
-                            alignment: Alignment.topCenter,
-                            width: size.width * 0.2,
-                            height: size.height * 0.13,
-                            child: IconButton(
-                              icon: Image.asset(
-                                  'assets/images/all_plant_144.png'),
-                              iconSize: 120,
-                              onPressed: () {},
-                            ),
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5.0),
+                    width: size.width * 0.2,
+                    height: size.height * 0.18,
+                    //color: Colors.white,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          // color: Colors.black,
+                          margin: const EdgeInsets.only(bottom: 5.0),
+                          alignment: Alignment.topCenter,
+                          width: size.width * 0.2,
+                          height: size.height * 0.13,
+                          child: IconButton(
+                            icon:
+                                Image.asset('assets/images/all_plant_144.png'),
+                            iconSize: 100,
+                            onPressed: () {},
                           ),
-                          Container(
-                            alignment: Alignment.topCenter,
-                            child: const Text('All',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold)),
+                        ),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          child: const Text('All',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5.0),
+                    width: size.width * 0.2,
+                    height: size.height * 0.18,
+                    //color: Colors.black,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 5.0),
+                          alignment: Alignment.topCenter,
+                          width: size.width * 0.2,
+                          height: size.height * 0.13,
+                          child: IconButton(
+                            icon: Image.asset('assets/images/indoor_plant.png'),
+                            iconSize: 100,
+                            onPressed: () {},
                           ),
-                        ],
-                      ),
+                        ),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          child: const Text(
+                            'Indoor',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      width: size.width * 0.2,
-                      height: size.height * 0.25,
-                      color: Colors.black,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 5.0),
+                    width: size.width * 0.2,
+                    height: size.height * 0.18,
+                    //color: Colors.black,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 5.0),
+                          alignment: Alignment.topCenter,
+                          width: size.width * 0.2,
+                          height: size.height * 0.13,
+                          child: IconButton(
+                            icon:
+                                Image.asset('assets/images/outdoor_plant.png'),
+                            iconSize: 100,
+                            onPressed: () {},
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          child: const Text(
+                            'Outdoor',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      width: size.width * 0.2,
-                      height: size.height * 0.25,
-                      color: Colors.black,
-                    ),
-                  ]),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
