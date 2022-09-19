@@ -65,6 +65,7 @@ flutter:
    - assets/images/indoor_plant.png
    - assets/images/all_plant_48.png
    - assets/images/all_plant_96.png
+   - assets/images/all_plant_144.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -98,27 +98,52 @@ class _HomeScreen extends State<HomeScreen> {
                 ],
               ),
             ),
-            Container(
-              color: Colors.red,
+            SizedBox(
+              // color: Colors.red,
               //width: 100,
-              height: size.height * 0.17,
+              height: size.height * 0.18,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Container(
-                      width: size.width * 0.086,
-                      height: size.height * 0.15,
-                      color: Colors.white,
+                      margin: const EdgeInsets.only(bottom: 5.0),
+                      width: size.width * 0.2,
+                      height: size.height * 0.18,
+                      //color: Colors.white,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            // color: Colors.black,
+                            margin: const EdgeInsets.only(bottom: 5.0),
+                            alignment: Alignment.topCenter,
+                            width: size.width * 0.2,
+                            height: size.height * 0.13,
+                            child: IconButton(
+                              icon: Image.asset(
+                                  'assets/images/all_plant_144.png'),
+                              iconSize: 120,
+                              onPressed: () {},
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.topCenter,
+                            child: const Text('All',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
                     ),
                     Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.white,
+                      width: size.width * 0.2,
+                      height: size.height * 0.25,
+                      color: Colors.black,
                     ),
                     Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.white,
+                      width: size.width * 0.2,
+                      height: size.height * 0.25,
+                      color: Colors.black,
                     ),
                   ]),
             ),
