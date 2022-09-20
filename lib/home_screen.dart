@@ -1,3 +1,4 @@
+import 'package:automated_ios/description_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -358,7 +359,15 @@ class _HomeScreen extends State<HomeScreen> {
                                                 Colors.tealAccent[400],
                                             shape: const StadiumBorder(),
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const DescriptionPage(),
+                                              ),
+                                            );
+                                          },
                                           child: const Text(
                                             'Checkout',
                                             textAlign: TextAlign.center,
