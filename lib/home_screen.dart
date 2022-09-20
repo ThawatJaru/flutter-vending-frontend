@@ -233,7 +233,7 @@ class _HomeScreen extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                    padding: EdgeInsets.only(left: 35.0),
                   ),
                   Container(
                     margin: const EdgeInsets.all(7.0),
@@ -266,14 +266,114 @@ class _HomeScreen extends State<HomeScreen> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(50.0),
                         child: Container(
-                          height: size.height * 0.34,
+                          height: size.height * 0.37,
                           width: size.width * 0.28,
-                          margin: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.all(5),
                           color: Colors.grey[300],
-                          child: Center(
-                            child: Text(
-                              "Plant $index",
-                            ),
+                          child: Column(
+                            children: <Widget>[
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(40.0),
+                                child: Container(
+                                  //alignment: Alignment.center,
+                                  height: size.height * 0.030,
+                                  width: size.width * 0.14,
+                                  margin: const EdgeInsets.all(10),
+                                  color: Colors.grey[50],
+                                  child: const Text('Outdoor plants',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ),
+                              //Test Image
+                              Container(
+                                margin: const EdgeInsets.all(3.0),
+                                // color: Colors.red,
+                                width: size.width * 0.12,
+                                height: size.height * 0.19,
+                                child: ClipRRect(
+                                  child: FittedBox(
+                                    fit: BoxFit.fill,
+                                    child: Image.asset(
+                                        'assets/images/plant_outdoor_ex.jpg'),
+                                  ),
+                                ),
+                              ),
+                              //Test Plant Price and Name
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(40.0),
+                                child: Container(
+                                  margin: const EdgeInsets.only(
+                                    left: 10,
+                                    right: 10,
+                                    top: 10.0,
+                                  ),
+                                  color: Colors.white,
+                                  width: size.width * 2,
+                                  height: size.height * 0.09,
+                                  child: Row(
+                                    children: <Widget>[
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 7.0),
+                                      ),
+                                      Column(
+                                        //remove the constant also!
+                                        children: const <Widget>[
+                                          Text(
+                                            'Round Cactus',
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle: FontStyle.normal,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 4.0, top: 10.0),
+                                          ),
+                                          Text(
+                                            '200 Baht',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 22.0,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                      //Button
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(left: 40.0),
+                                        height: size.height * 0.07,
+                                        width: size.width * 0.11,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                Colors.tealAccent[400],
+                                            shape: const StadiumBorder(),
+                                          ),
+                                          onPressed: () {},
+                                          child: const Text(
+                                            'Checkout',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle: FontStyle.normal),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
