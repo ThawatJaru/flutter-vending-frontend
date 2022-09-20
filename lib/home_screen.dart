@@ -7,8 +7,30 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreen();
 }
 
+//data plant item TEST
+class PlantItem {
+  final String urlImage;
+  final String title;
+  final String subtitle;
+
+  const PlantItem({
+    required this.urlImage,
+    required this.title,
+    required this.subtitle,
+  });
+}
+
 class _HomeScreen extends State<HomeScreen> {
   TextEditingController searchPlant = TextEditingController();
+
+  //list of data display TEST
+  List<PlantItem> items = [
+    const PlantItem(
+      urlImage: '',
+      title: '',
+      subtitle: '',
+    ),
+  ];
 
   @override
   void dispose() {
@@ -234,21 +256,28 @@ class _HomeScreen extends State<HomeScreen> {
               Container(
                 padding: const EdgeInsets.all(6.0),
                 margin: const EdgeInsets.only(left: 13.0, right: 13.0),
-                color: Colors.grey,
+                //color: Colors.grey,
                 height: size.height * 0.4,
                 child: ListView.builder(
                   itemCount: 6,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Container(
-                    height: size.height * 0.3,
-                    width: size.width * 0.3,
-                    margin: const EdgeInsets.all(10),
-                    color: Colors.green,
-                    child: Center(
-                      child: Text(
-                        "Plant $index",
+                  itemBuilder: (context, index) => Column(
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50.0),
+                        child: Container(
+                          height: size.height * 0.34,
+                          width: size.width * 0.28,
+                          margin: const EdgeInsets.all(10),
+                          color: Colors.grey[300],
+                          child: Center(
+                            child: Text(
+                              "Plant $index",
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
