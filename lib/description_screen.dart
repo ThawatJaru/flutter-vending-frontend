@@ -8,6 +8,7 @@ class DescriptionPage extends StatefulWidget {
   State<DescriptionPage> createState() => _DescriptionPage();
 }
 
+//class description
 class _DescriptionPage extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
@@ -44,10 +45,54 @@ class _DescriptionPage extends State<DescriptionPage> {
               padding: EdgeInsets.only(top: 20.0),
             ),
             //Picture plant in description page
+            SizedBox(
+              //color: Colors.red,
+              width: size.width * 0.4,
+              height: size.height * 0.5,
+              child: ClipRRect(
+                child: Image.asset('assets/images/plant_outdoor_ex.jpg'),
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.only(left: 50.0, top: 23.0),
+                  child: const Text(
+                    'Description',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 35.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            //Test Description
             Container(
-              color: Colors.red,
-              width: size.width * 0.5,
-              height: size.height * 0.36,
+              margin: const EdgeInsets.only(top: 8.0, left: 50.0, right: 20.0),
+              //color: Colors.brown,
+              height: size.height * 0.2,
+              width: size.width,
+              child: Column(
+                children: <Widget>[
+                  Flexible(
+                    child: SizedBox(
+                      //color: Colors.red,
+                      width: size.width,
+                      height: size.height * 0.09,
+                      child: const Text(
+                        'Round Cactus is the common name for a type of cactus best known for its round shape. Barrel cacti grow natively throughout Central Mexico and the Southwestern United States.',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
