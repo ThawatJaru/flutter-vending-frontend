@@ -71,14 +71,14 @@ class _DescriptionPage extends State<DescriptionPage> {
             //Test Description
             Container(
               margin: const EdgeInsets.only(top: 8.0, left: 50.0, right: 20.0),
-              color: Colors.brown,
+              //color: Colors.brown,
               height: size.height * 0.2,
               width: size.width,
               child: Column(
                 children: <Widget>[
                   Flexible(
-                    child: Container(
-                      color: Colors.red,
+                    child: SizedBox(
+                      //color: Colors.red,
                       width: size.width,
                       height: size.height * 0.1,
                       child: const Text(
