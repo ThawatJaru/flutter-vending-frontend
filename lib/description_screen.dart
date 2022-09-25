@@ -71,25 +71,61 @@ class _DescriptionPage extends State<DescriptionPage> {
             //Test Description
             Container(
               margin: const EdgeInsets.only(top: 8.0, left: 50.0, right: 20.0),
-              //color: Colors.brown,
+              color: Colors.brown,
               height: size.height * 0.2,
               width: size.width,
               child: Column(
                 children: <Widget>[
                   Flexible(
-                    child: SizedBox(
-                      //color: Colors.red,
+                    child: Container(
+                      color: Colors.red,
                       width: size.width,
-                      height: size.height * 0.09,
+                      height: size.height * 0.1,
                       child: const Text(
                         'Round Cactus is the common name for a type of cactus best known for its round shape. Barrel cacti grow natively throughout Central Mexico and the Southwestern United States.',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 20,
+                            fontSize: 22,
                             fontWeight: FontWeight.w400),
                       ),
                     ),
+                  ),
+                  Row(
+                    children: const <Widget>[
+                      Text(
+                        'Type: ',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FontStyle.normal),
+                      ),
+                      //Description plant type
+                      Text(
+                        'Outdoor',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.only(),
+                        color: Colors.blue,
+                        width: size.width * 0.3,
+                        height: size.height * 0.08,
+                        child: Column(
+                          children: <Widget>[
+                            Container(),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
