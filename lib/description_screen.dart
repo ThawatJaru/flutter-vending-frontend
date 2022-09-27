@@ -1,4 +1,5 @@
 import 'package:automated_ios/home_screen.dart';
+import 'package:automated_ios/payment_screen.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionPage extends StatefulWidget {
@@ -71,7 +72,7 @@ class _DescriptionPage extends State<DescriptionPage> {
             //Test Description
             Container(
               margin: const EdgeInsets.only(top: 8.0, left: 50.0, right: 20.0),
-              //color: Colors.brown,
+              //color: Colors.brown,r
               height: size.height * 0.2,
               width: size.width,
               child: Column(
@@ -116,13 +117,65 @@ class _DescriptionPage extends State<DescriptionPage> {
                     children: <Widget>[
                       Container(
                         padding: const EdgeInsets.only(),
-                        color: Colors.blue,
+                        //color: Colors.blue,
                         width: size.width * 0.3,
                         height: size.height * 0.08,
                         child: Column(
                           children: <Widget>[
-                            Container(),
+                            Container(
+                              padding: const EdgeInsets.only(left: 70.0),
+                              child: const Text(
+                                'Price',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 20.0,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            //Price Description page
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(left: 70.0, top: 5.0),
+                              child: const Text(
+                                '200 Baht',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 120.0),
+                        //color: Colors.blue,
+                        width: size.width * 0.18,
+                        height: size.height * 0.09,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.tealAccent[400],
+                            shape: const StadiumBorder(),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const PaymentPage(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Checkout',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.normal),
+                          ),
                         ),
                       ),
                     ],
