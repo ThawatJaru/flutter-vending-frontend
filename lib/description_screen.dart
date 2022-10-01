@@ -15,6 +15,7 @@ class _DescriptionPage extends State<DescriptionPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      /*
       appBar: AppBar(
         backgroundColor: Colors.white,
         toolbarHeight: 50.0,
@@ -27,11 +28,24 @@ class _DescriptionPage extends State<DescriptionPage> {
         ),
         // backgroundColor: Colors.green,
       ),
+      */
       body: Center(
         child: Column(
           children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(10.0),
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios,
+                      color: Colors.black, size: 30.0),
+                  onPressed: () => Navigator.of(context).pop(
+                    const HomeScreen(),
+                  ),
+                ),
+              ),
+            ]),
             const Padding(
-              padding: EdgeInsets.only(top: 26.0),
+              padding: EdgeInsets.only(top: 1.0),
             ),
             //Name Plant description page
             const Text(
