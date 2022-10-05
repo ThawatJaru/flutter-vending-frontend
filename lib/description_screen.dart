@@ -3,13 +3,12 @@ import 'package:automated_ios/payment_screen.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionPage extends StatefulWidget {
-  DescriptionPage({super.key, required this.plantItem});
+  const DescriptionPage({
+    super.key,
+  });
 
   @override
   State<DescriptionPage> createState() => _DescriptionPage();
-
-  final PlantItem plantItem;
-  DescriptionPage(this.plantItem);
 }
 
 //class description

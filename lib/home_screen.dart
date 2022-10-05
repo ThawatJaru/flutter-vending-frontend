@@ -110,7 +110,6 @@ class _HomeScreen extends State<HomeScreen> {
                       color: Colors.grey,
                     ),
                   ),
-                  // onChanged:
                 ),
               ),
               Container(
@@ -385,7 +384,7 @@ class _HomeScreen extends State<HomeScreen> {
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          DescriptionPage(),
+                                                          const DescriptionPage(),
                                                     ),
                                                   );
                                                 },
