@@ -379,7 +379,7 @@ class _HomeScreen extends State<HomeScreen> {
                                           width: size.width * 0.13,
                                           margin: const EdgeInsets.all(10),
                                           color: Colors.grey[50],
-                                          child: Text('${item.category}',
+                                          child: Text(item.category,
                                               textAlign: TextAlign.center,
                                               style: const TextStyle(
                                                   color: Colors.black,
@@ -397,12 +397,12 @@ class _HomeScreen extends State<HomeScreen> {
                                           child: FittedBox(
                                             fit: BoxFit.fill,
                                             child: item.picture
-                                                    .isNotEmpty //ถ้าไม่มีภาพ
+                                                    .isNotEmpty // if no picture
                                                 ? Image.network(
-                                                    item.picture,
+                                                    item.picture, //if have picture from json
                                                   )
                                                 : Image.asset(
-                                                    'assets/images/plant_outdoor_ex.jpg'),
+                                                    'assets/images/plant_outdoor_ex.jpg'), // test image from website
                                           ),
                                         ),
                                       ),
@@ -429,7 +429,7 @@ class _HomeScreen extends State<HomeScreen> {
                                                 //remove the constant also!
                                                 children: <Widget>[
                                                   Text(
-                                                    '${item.name}',
+                                                    item.name,
                                                     textAlign: TextAlign.start,
                                                     style: const TextStyle(
                                                       color: Colors.black,
