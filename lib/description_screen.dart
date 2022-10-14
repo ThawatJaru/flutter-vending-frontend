@@ -1,11 +1,11 @@
 import 'package:automated_ios/home_screen.dart';
 import 'package:automated_ios/payment_screen.dart';
+import 'package:automated_ios/plant_item.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionPage extends StatefulWidget {
-  const DescriptionPage({
-    super.key,
-  });
+  final PlantItem plant;
+  const DescriptionPage({Key? key, required this.plant}) : super(key: key);
 
   @override
   State<DescriptionPage> createState() => _DescriptionPage();
@@ -36,10 +36,10 @@ class _DescriptionPage extends State<DescriptionPage> {
               padding: EdgeInsets.only(top: 1.0),
             ),
             //Name Plant description page
-            const Text(
-              'Round Cactus',
+            Text(
+              widget.plant.name,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.black,
                   fontSize: 40,
                   fontWeight: FontWeight.bold),
@@ -53,17 +53,22 @@ class _DescriptionPage extends State<DescriptionPage> {
               width: size.width * 0.4,
               height: size.height * 0.5,
               child: ClipRRect(
-                child: Image.asset('assets/images/plant_outdoor_ex.jpg'),
+                child: widget.plant.picture.isNotEmpty
+                    ? Image.network(
+                        widget.plant.picture, //from Json
+                      )
+                    : Image.asset(
+                        'assets/images/plant_outdoor_ex.jpg'), //testing only
               ),
             ),
             Row(
               children: <Widget>[
                 Container(
                   padding: const EdgeInsets.only(left: 50.0, top: 23.0),
-                  child: const Text(
-                    'Description',
+                  child: Text(
+                    widget.plant.name,
                     textAlign: TextAlign.start,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 35.0,
                         fontWeight: FontWeight.bold),
@@ -84,19 +89,21 @@ class _DescriptionPage extends State<DescriptionPage> {
                       //color: Colors.red,
                       width: size.width,
                       height: size.height * 0.1,
-                      child: const Text(
-                        'Round Cactus is the common name for a type of cactus best known for its round shape. Barrel cacti grow natively throughout Central Mexico and the Southwestern United States.',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w400),
+                      child: SingleChildScrollView(
+                        child: Text(
+                          widget.plant.description,
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
                   ),
                   Row(
-                    children: const <Widget>[
-                      Text(
+                    children: <Widget>[
+                      const Text(
                         'Type: ',
                         style: TextStyle(
                             color: Colors.grey,
@@ -106,8 +113,8 @@ class _DescriptionPage extends State<DescriptionPage> {
                       ),
                       //Description plant type
                       Text(
-                        'Outdoor',
-                        style: TextStyle(
+                        widget.plant.category,
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -140,10 +147,10 @@ class _DescriptionPage extends State<DescriptionPage> {
                             Container(
                               padding:
                                   const EdgeInsets.only(left: 70.0, top: 5.0),
-                              child: const Text(
-                                '200 Baht',
+                              child: Text(
+                                '${widget.plant.price} Baht',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 22.0,
                                     fontWeight: FontWeight.bold),

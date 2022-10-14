@@ -44,17 +44,17 @@ class _HomeScreen extends State<HomeScreen> {
 
         if (searchCategory <= 0) {
           //All Category
-          plantItem = PlantItem(
-              p['id'], p['name'], p['category'], p['picture'], p['price']);
+          plantItem = PlantItem(p['id'], p['name'], p['description'],
+              p['category'], p['picture'], p['price']);
         } else {
-          if (searchCategory == 1 && p['category'] == 'indoor') {
+          if (searchCategory == 1 && p['category'] == 'Indoor') {
             //Indoor
-            plantItem = PlantItem(
-                p['id'], p['name'], p['category'], p['picture'], p['price']);
-          } else if (searchCategory == 2 && p['category'] == 'outdoor') {
+            plantItem = PlantItem(p['id'], p['name'], p['description'],
+                p['category'], p['picture'], p['price']);
+          } else if (searchCategory == 2 && p['category'] == 'Outdoor') {
             //Outdoor
-            plantItem = PlantItem(
-                p['id'], p['name'], p['category'], p['picture'], p['price']);
+            plantItem = PlantItem(p['id'], p['name'], p['description'],
+                p['category'], p['picture'], p['price']);
           }
         }
         PlantItems.add(plantItem);
@@ -474,7 +474,9 @@ class _HomeScreen extends State<HomeScreen> {
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const DescriptionPage(),
+                                                            DescriptionPage(
+                                                                plant:
+                                                                    item), //pass data plant[Item]
                                                       ),
                                                     );
                                                   },
