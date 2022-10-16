@@ -28,6 +28,9 @@ class _HomeScreen extends State<HomeScreen> {
     //add each item into empty list for displaying it in UI
     //for (int i = 0; i < 30; i++) {
     for (var p in data) {
+      //condition no description
+      p['description'] = p['description'] ?? 'No Description Available';
+      //condition no picture
       p['picture'] = p['picture'] ??
           'https://mpics.mgronline.com/pics/Images/558000002578001.JPEG'; //Picture test for now
       try {
@@ -70,7 +73,8 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: []); //show only flutter screen
     searchPlant.text = '';
   }
 
