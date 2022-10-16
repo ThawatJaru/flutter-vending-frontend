@@ -110,12 +110,22 @@ class _PaymentPage extends State<PaymentPage> {
                       fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
+                  setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  });
+                  /*
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const HomeScreen(),
                     ),
                   );
+                  */
                 },
               ),
             ),
