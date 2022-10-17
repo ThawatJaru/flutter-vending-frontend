@@ -401,7 +401,7 @@ class _HomeScreen extends State<HomeScreen> {
                                           child: FittedBox(
                                             fit: BoxFit.fill,
                                             child: item.picture
-                                                    .isNotEmpty // if no picture
+                                                    .isNotEmpty // check if picture is not empty
                                                 ? Image.network(
                                                     item.picture, //if have picture from json
                                                   )
