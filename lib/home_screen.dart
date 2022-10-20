@@ -21,6 +21,8 @@ class _HomeScreen extends State<HomeScreen> {
 
   Future<List<PlantItem>> getPlants() async {
     var url = '$PLANT_HOST/plants';
+    //var url = '$PLANT_HOST/plant';
+    log('url: $url');
     final response =
         await http.get(Uri.parse(url)); //receiving URL http get Request
     final data = json.decode(response.body); //decoding json
@@ -31,8 +33,7 @@ class _HomeScreen extends State<HomeScreen> {
       //condition no description
       p['description'] = p['description'] ?? 'No Description Available';
       //condition no picture
-      p['picture'] = p['picture'] ??
-          'https://mpics.mgronline.com/pics/Images/558000002578001.JPEG'; //Picture test for now
+      p['picture'] = p['picture'] ?? ''; //Picture test for now
       try {
         late PlantItem plantItem;
 
@@ -47,17 +48,36 @@ class _HomeScreen extends State<HomeScreen> {
 
         if (searchCategory <= 0) {
           //All Category
-          plantItem = PlantItem(p['id'], p['name'], p['description'],
-              p['category'], p['picture'], p['price']);
+          plantItem = PlantItem(
+              p['id'].toString(),
+              p['name'].toString(),
+              p['description'].toString(),
+              p['category'].toString(),
+              p['picture'].toString(),
+              //p['image'].toString(),
+              p['price']);
         } else {
-          if (searchCategory == 1 && p['category'] == 'Indoor') {
+          if (searchCategory == 1 && p['category'].toString() == 'Indoor') {
             //Indoor
-            plantItem = PlantItem(p['id'], p['name'], p['description'],
-                p['category'], p['picture'], p['price']);
-          } else if (searchCategory == 2 && p['category'] == 'Outdoor') {
+            plantItem = PlantItem(
+                p['id'].toString(),
+                p['name'].toString(),
+                p['description'].toString(),
+                p['category'].toString(),
+                p['picture'].toString(),
+                //p['image'].toString(),
+                p['price']);
+          } else if (searchCategory == 2 &&
+              p['category'].toString() == 'Outdoor') {
             //Outdoor
-            plantItem = PlantItem(p['id'], p['name'], p['description'],
-                p['category'], p['picture'], p['price']);
+            plantItem = PlantItem(
+                p['id'].toString(),
+                p['name'].toString(),
+                p['description'].toString(),
+                p['category'].toString(),
+                p['picture'].toString(),
+                //p['image'].toString(),
+                p['price']);
           }
         }
         PlantItems.add(plantItem);
@@ -402,9 +422,8 @@ class _HomeScreen extends State<HomeScreen> {
                                             fit: BoxFit.fill,
                                             child: item.picture
                                                     .isNotEmpty // check if picture is not empty
-                                                ? Image.network(
-                                                    item.picture, //if have picture from json
-                                                  )
+                                                ? Image.memory(
+                                                    base64Decode(item.picture))
                                                 : Image.asset(
                                                     'assets/images/plant_outdoor_ex.jpg'), // test image from website
                                           ),
