@@ -20,7 +20,7 @@ class _HomeScreen extends State<HomeScreen> {
   int searchCategory = 0;
 
   Future<List<PlantItem>> getPlants() async {
-    var url = '$PLANT_HOST/plant';
+    var url = '$PLANT_HOST/plants';
     final response =
         await http.get(Uri.parse(url)); //receiving URL http get Request
     final data = json.decode(response.body); //decoding json
@@ -28,11 +28,10 @@ class _HomeScreen extends State<HomeScreen> {
     //add each item into empty list for displaying it in UI
     //for (int i = 0; i < 30; i++) {
     for (var p in data) {
-      print(p['image']);
       //condition no description
       p['description'] = p['description'] ?? 'No Description Available';
       //condition no picture
-      p['image'] = p['image'] ??
+      p['picture'] = p['picture'] ??
           'https://mpics.mgronline.com/pics/Images/558000002578001.JPEG'; //Picture test for now
       try {
         late PlantItem plantItem;
@@ -49,16 +48,16 @@ class _HomeScreen extends State<HomeScreen> {
         if (searchCategory <= 0) {
           //All Category
           plantItem = PlantItem(p['id'], p['name'], p['description'],
-              p['category'], p['picture'], p['image']);
+              p['category'], p['picture'], p['price']);
         } else {
           if (searchCategory == 1 && p['category'] == 'Indoor') {
             //Indoor
             plantItem = PlantItem(p['id'], p['name'], p['description'],
-                p['category'], p['image'], p['price']);
+                p['category'], p['picture'], p['price']);
           } else if (searchCategory == 2 && p['category'] == 'Outdoor') {
             //Outdoor
             plantItem = PlantItem(p['id'], p['name'], p['description'],
-                p['category'], p['image'], p['price']);
+                p['category'], p['picture'], p['price']);
           }
         }
         PlantItems.add(plantItem);
@@ -401,10 +400,11 @@ class _HomeScreen extends State<HomeScreen> {
                                         child: ClipRRect(
                                           child: FittedBox(
                                             fit: BoxFit.fill,
-                                            child: item.image
+                                            child: item.picture
                                                     .isNotEmpty // check if picture is not empty
-                                                ? Image.memory(base64Decode(
-                                                    "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"))
+                                                ? Image.network(
+                                                    item.picture, //if have picture from json
+                                                  )
                                                 : Image.asset(
                                                     'assets/images/plant_outdoor_ex.jpg'), // test image from website
                                           ),

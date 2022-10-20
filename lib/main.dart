@@ -5,7 +5,8 @@ void main() {
   runApp(MyApp()); //
 }
 
-String PLANT_HOST = 'https://plant-shop-server.herokuapp.com/api/v1';
+String PLANT_HOST =
+    'https://6fa5c207-2538-4647-bd79-32c50f472ee1.mock.pstmn.io';
 
 class MyApp extends StatelessWidget {
   @override
