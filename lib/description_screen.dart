@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:automated_ios/home_screen.dart';
 import 'package:automated_ios/payment_screen.dart';
 import 'package:automated_ios/plant_item.dart';
@@ -53,10 +55,9 @@ class _DescriptionPage extends State<DescriptionPage> {
               width: size.width * 0.4,
               height: size.height * 0.5,
               child: ClipRRect(
-                child: widget.plant.picture.isNotEmpty
-                    ? Image.network(
-                        widget.plant.picture, //from Json
-                      )
+                child: widget.plant.image.isNotEmpty
+                    ? Image.memory(base64Decode(widget.plant.image), //from Json
+                        fit: BoxFit.cover)
                     : Image.asset(
                         'assets/images/plant_outdoor_ex.jpg'), //testing only
               ),
