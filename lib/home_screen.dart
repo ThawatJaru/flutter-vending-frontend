@@ -33,7 +33,7 @@ class _HomeScreen extends State<HomeScreen> {
       //condition no description
       p['description'] = p['description'] ?? 'No Description Available';
       //condition no picture
-      p['image'] = p['image'] ?? ''; //Picture test for now
+      p['picture'] = p['picture'] ?? ''; //Picture test for now
       try {
         late PlantItem plantItem;
 
@@ -53,8 +53,7 @@ class _HomeScreen extends State<HomeScreen> {
               p['name'].toString(),
               p['description'].toString(),
               p['category'].toString(),
-              //p['picture'].toString(),
-              p['image'].toString(),
+              p['picture'].toString(),
               p['price']);
         } else {
           if (searchCategory == 1 &&
@@ -65,8 +64,7 @@ class _HomeScreen extends State<HomeScreen> {
                 p['name'].toString(),
                 p['description'].toString(),
                 p['category'].toString(),
-                //p['picture'].toString(),
-                p['image'].toString(),
+                p['picture'].toString(),
                 p['price']);
           } else if (searchCategory == 2 &&
               p['category'].toString().toLowerCase() == 'outdoor') {
@@ -76,8 +74,7 @@ class _HomeScreen extends State<HomeScreen> {
                 p['name'].toString(),
                 p['description'].toString(),
                 p['category'].toString(),
-                //p['picture'].toString(),
-                p['image'].toString(),
+                p['picture'].toString(),
                 p['price']);
           }
         }
@@ -421,10 +418,10 @@ class _HomeScreen extends State<HomeScreen> {
                                         child: ClipRRect(
                                           child: FittedBox(
                                             fit: BoxFit.fill,
-                                            child: item.image
+                                            child: item.picture
                                                     .isNotEmpty // check if picture is not empty
                                                 ? Image.memory(
-                                                    base64Decode(item.image))
+                                                    base64Decode(item.picture))
                                                 : Image.asset(
                                                     'assets/images/plant_outdoor_ex.jpg'), // test image from website
                                           ),

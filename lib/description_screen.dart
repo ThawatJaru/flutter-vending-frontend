@@ -55,8 +55,9 @@ class _DescriptionPage extends State<DescriptionPage> {
               width: size.width * 0.4,
               height: size.height * 0.5,
               child: ClipRRect(
-                child: widget.plant.image.isNotEmpty
-                    ? Image.memory(base64Decode(widget.plant.image), //from Json
+                child: widget.plant.picture.isNotEmpty
+                    ? Image.memory(
+                        base64Decode(widget.plant.picture), //from Json
                         fit: BoxFit.cover)
                     : Image.asset(
                         'assets/images/plant_outdoor_ex.jpg'), //testing only
