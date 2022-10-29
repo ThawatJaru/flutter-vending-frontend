@@ -57,7 +57,7 @@ class _HomeScreen extends State<HomeScreen> {
               p['price']);
         } else {
           if (searchCategory == 1 &&
-              p['category'].toString().toLowerCase() == 'indoor') {
+              p['category'].toString().toLowerCase() == 'Indoor') {
             //Indoor
             plantItem = PlantItem(
                 p['id'].toString(),
@@ -67,7 +67,7 @@ class _HomeScreen extends State<HomeScreen> {
                 p['picture'].toString(),
                 p['price']);
           } else if (searchCategory == 2 &&
-              p['category'].toString().toLowerCase() == 'outdoor') {
+              p['category'].toString().toLowerCase() == 'Outdoor') {
             //Outdoor
             plantItem = PlantItem(
                 p['id'].toString(),
