@@ -528,7 +528,7 @@ class _HomeScreen extends State<HomeScreen> {
                     } else {
                       return const Center(
                         child: Text(
-                          'The product you searched for was not found.\nPlease type your product again',
+                          'The product you searched for was not found.\n Please Try Again',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 32.0,
