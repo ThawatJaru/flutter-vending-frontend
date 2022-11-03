@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:automated_ios/description_screen.dart';
 import 'package:automated_ios/main.dart';
+import 'package:automated_ios/plant_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:automated_ios/plant_item.dart';
@@ -33,7 +34,16 @@ class _HomeScreen extends State<HomeScreen> {
       //condition no description
       p['description'] = p['description'] ?? 'No Description Available';
       //condition no picture
-      p['picture'] = p['picture'] ?? ''; //Picture test for now
+      p['image'] = p['image'] ?? ''; //Picture test for now
+
+      PlantImage current_image = PlantImage("");
+
+      //assign image to current_image (PlantImage)
+      p['image'].forEach((key, value) {
+        if (key == 'picture') {
+          current_image = PlantImage(value);
+        }
+      });
       try {
         late PlantItem plantItem;
 
@@ -53,7 +63,7 @@ class _HomeScreen extends State<HomeScreen> {
               p['name'].toString(),
               p['description'].toString(),
               p['category'].toString(),
-              p['picture'].toString(),
+              current_image,
               p['price']);
         } else {
           if (searchCategory == 1 &&
@@ -64,7 +74,7 @@ class _HomeScreen extends State<HomeScreen> {
                 p['name'].toString(),
                 p['description'].toString(),
                 p['category'].toString(),
-                p['picture'].toString(),
+                current_image,
                 p['price']);
           } else if (searchCategory == 2 &&
               p['category'].toString().toLowerCase() == 'Outdoor') {
@@ -74,7 +84,7 @@ class _HomeScreen extends State<HomeScreen> {
                 p['name'].toString(),
                 p['description'].toString(),
                 p['category'].toString(),
-                p['picture'].toString(),
+                current_image,
                 p['price']);
           }
         }
@@ -418,10 +428,10 @@ class _HomeScreen extends State<HomeScreen> {
                                         child: ClipRRect(
                                           child: FittedBox(
                                             fit: BoxFit.fill,
-                                            child: item.picture
+                                            child: item.plant_image.picture
                                                     .isNotEmpty // check if picture is not empty
-                                                ? Image.memory(
-                                                    base64Decode(item.picture))
+                                                ? Image.memory(base64Decode(
+                                                    item.plant_image.picture))
                                                 : Image.asset(
                                                     'assets/images/plant_outdoor_ex.jpg'), // test image from website
                                           ),
