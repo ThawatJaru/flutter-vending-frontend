@@ -59,7 +59,7 @@ class _HomeScreen extends State<HomeScreen> {
         if (searchCategory <= 0) {
           //All Category
           plantItem = PlantItem(
-              p['id'].toString(),
+              p['plant_id'].toString(),
               p['name'].toString(),
               p['description'].toString(),
               p['category'].toString(),
@@ -69,7 +69,7 @@ class _HomeScreen extends State<HomeScreen> {
           if (searchCategory == 1 && p['category'].toString() == 'Indoor') {
             //Indoor
             plantItem = PlantItem(
-                p['id'].toString(),
+                p['plant_id'].toString(),
                 p['name'].toString(),
                 p['description'].toString(),
                 p['category'].toString(),
@@ -79,7 +79,7 @@ class _HomeScreen extends State<HomeScreen> {
               p['category'].toString() == 'Outdoor') {
             //Outdoor
             plantItem = PlantItem(
-                p['id'].toString(),
+                p['plant_id'].toString(),
                 p['name'].toString(),
                 p['description'].toString(),
                 p['category'].toString(),

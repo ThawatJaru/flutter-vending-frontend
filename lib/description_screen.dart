@@ -1,16 +1,32 @@
+import 'dart:collection';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:automated_ios/home_screen.dart';
+import 'package:automated_ios/main.dart';
 import 'package:automated_ios/payment_screen.dart';
 import 'package:automated_ios/plant_item.dart';
+import 'package:automated_ios/plant_statement.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+String plant_statement_id = "";
 
 class DescriptionPage extends StatefulWidget {
   final PlantItem plant;
-  const DescriptionPage({Key? key, required this.plant}) : super(key: key);
+  DescriptionPage({Key? key, required this.plant}) : super(key: key) {
+    initStatement();
+  }
 
   @override
-  State<DescriptionPage> createState() => _DescriptionPage();
+  State<DescriptionPage> createState() {
+    return _DescriptionPage();
+  }
+
+  // Pull plant id for creating statement
+  void initStatement() {
+    plant_statement_id = plant.plant_id;
+  }
 }
 
 //class description
@@ -173,12 +189,25 @@ class _DescriptionPage extends State<DescriptionPage> {
                             shape: const StadiumBorder(),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const PaymentPage(),
-                              ),
-                            );
+                            // Construct Statement object's variable
+                            String statement_id = "", status = "";
+                            checkout().then((payload_context) {
+                              statement_id = (payload_context['statement_id']);
+                              status = (payload_context['status']);
+
+                              PlantStatement payload =
+                                  PlantStatement(statement_id, status);
+
+                              // Go to Payment Page, pass Statement
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PaymentPage(
+                                    statement: payload,
+                                  ),
+                                ),
+                              );
+                            });
                           },
                           child: const Text(
                             'Checkout',
@@ -199,5 +228,21 @@ class _DescriptionPage extends State<DescriptionPage> {
         ),
       ),
     );
+  }
+
+  // Post Request --> create statement
+  dynamic checkout() async {
+    //var url = '$PLANT_HOST/plants';
+    var url = '$PLANT_HOST/statement';
+    final response = await http.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{'plant': plant_statement_id}),
+    ); //receiving URL http post Request
+    final data = json.decode(response.body); //decoding json
+
+    return data;
   }
 }

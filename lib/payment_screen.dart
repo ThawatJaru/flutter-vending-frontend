@@ -1,8 +1,14 @@
 import 'package:automated_ios/home_screen.dart';
+import 'package:automated_ios/plant_statement.dart';
 import 'package:flutter/material.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({super.key});
+  final PlantStatement statement;
+  PaymentPage({super.key, required this.statement}) {
+    print(statement.statement_id);
+    print(statement.status);
+  }
 
   @override
   State<PaymentPage> createState() => _PaymentPage();
@@ -10,10 +16,17 @@ class PaymentPage extends StatefulWidget {
 
 //class description
 class _PaymentPage extends State<PaymentPage> {
+  // Connect to Websocket
+  /*
+  final channel = WebSocketChannel.connect(
+    Uri.parse('http://plant-shop-server.herokuapp.com/api/v1/statement'),
+  );*/
+
   bool showQRCode = true;
   bool showConfirmPayment = false;
   bool showArrowQRPaymentPage = true;
   bool showArrowConfirmPaymentPage = false;
+
   @override
   Widget build(BuildContext context) {
     //Size size = MediaQuery.of(context).size;
