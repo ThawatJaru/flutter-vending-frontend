@@ -1,7 +1,7 @@
 import 'package:automated_ios/home_screen.dart';
 import 'package:automated_ios/plant_statement.dart';
 import 'package:flutter/material.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:mqtt_client/mqtt_client.dart';
 
 class PaymentPage extends StatefulWidget {
   final PlantStatement statement;
@@ -16,12 +16,6 @@ class PaymentPage extends StatefulWidget {
 
 //class description
 class _PaymentPage extends State<PaymentPage> {
-  // Connect to Websocket
-  /*
-  final channel = WebSocketChannel.connect(
-    Uri.parse('http://plant-shop-server.herokuapp.com/api/v1/statement'),
-  );*/
-
   bool showQRCode = true;
   bool showConfirmPayment = false;
   bool showArrowQRPaymentPage = true;
