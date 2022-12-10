@@ -511,7 +511,7 @@ class _HomeScreen extends State<HomeScreen> {
                                                     );
                                                   },
                                                   child: const Text(
-                                                    'Checkout',
+                                                    'More Details',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontSize: 20.0,

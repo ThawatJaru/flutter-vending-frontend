@@ -1,16 +1,14 @@
-import 'dart:collection';
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:automated_ios/home_screen.dart';
 import 'package:automated_ios/main.dart';
 import 'package:automated_ios/payment_screen.dart';
+import 'package:automated_ios/plant_image.dart';
 import 'package:automated_ios/plant_item.dart';
 import 'package:automated_ios/plant_statement.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-String plant_statement_id = "";
+PlantItem current_plant = new PlantItem("", "", "", "", new PlantImage(""), 0);
 
 class DescriptionPage extends StatefulWidget {
   final PlantItem plant;
@@ -25,7 +23,7 @@ class DescriptionPage extends StatefulWidget {
 
   // Pull plant id for creating statement
   void initStatement() {
-    plant_statement_id = plant.plant_id;
+    current_plant = this.plant;
   }
 }
 
@@ -204,6 +202,7 @@ class _DescriptionPage extends State<DescriptionPage> {
                                 MaterialPageRoute(
                                   builder: (context) => PaymentPage(
                                     statement: payload,
+                                    plant: current_plant,
                                   ),
                                 ),
                               );
@@ -231,6 +230,10 @@ class _DescriptionPage extends State<DescriptionPage> {
   }
 
   // Post Request --> create statement
+  // Body: {
+  //    "plant": "plant_id"
+  // }
+  // return Statement
   dynamic checkout() async {
     //var url = '$PLANT_HOST/plants';
     var url = '$PLANT_HOST/statement';
@@ -239,7 +242,7 @@ class _DescriptionPage extends State<DescriptionPage> {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{'plant': plant_statement_id}),
+      body: jsonEncode(<String, String>{'plant': current_plant.plant_id}),
     ); //receiving URL http post Request
     final data = json.decode(response.body); //decoding json
 

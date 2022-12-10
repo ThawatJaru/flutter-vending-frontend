@@ -1,17 +1,22 @@
 import 'package:automated_ios/home_screen.dart';
+import 'package:automated_ios/plant_image.dart';
+import 'package:automated_ios/plant_item.dart';
 import 'package:automated_ios/plant_statement.dart';
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
+PlantItem current_plant = new PlantItem("", "", "", "", new PlantImage(""), 0);
 String subscribed_message = "";
 
 class PaymentPage extends StatefulWidget {
   final PlantStatement statement;
-  PaymentPage({super.key, required this.statement}) {
+  final PlantItem plant;
+  PaymentPage({super.key, required this.statement, required this.plant}) {
+    current_plant = plant;
     print(statement.statement_id);
     print(statement.status);
-    MqttConnection();
+    //MqttConnection();
   }
 
   @override
@@ -110,6 +115,9 @@ class PaymentPage extends StatefulWidget {
 
 //class description
 class _PaymentPage extends State<PaymentPage> {
+  String paypalTelNumber = "0970638685";
+  String paypalPrice = current_plant.price.toString();
+
   bool showQRCode = true;
   bool showConfirmPayment = false;
   bool showArrowQRPaymentPage = true;
@@ -295,15 +303,24 @@ class _PaymentPage extends State<PaymentPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 25.0),
+            margin: const EdgeInsets.only(top: 15.0),
             color: Colors.grey,
-            width: size.width * 0.55,
-            height: size.height * 0.55,
+            width: size.width * 0.40,
+            height: size.height * 0.60,
             //Testing QR code from webserver
             child: Container(
-              margin: const EdgeInsets.all(40.0),
-              color: Colors.white,
-            ),
+                margin: const EdgeInsets.all(30.0),
+                //color: Colors.white,
+                decoration: new BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    image: new DecorationImage(
+                      fit: BoxFit.fill,
+                      image: new NetworkImage("https://promptpay.io/" +
+                          paypalTelNumber +
+                          "/" +
+                          paypalPrice +
+                          ".png"),
+                    ))),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 14.0),
@@ -321,8 +338,8 @@ class _PaymentPage extends State<PaymentPage> {
             padding: EdgeInsets.only(top: 3.0),
           ),
           //Text Price payment Test
-          const Text(
-            '200 Baht',
+          Text(
+            current_plant.price.toString() + ' Baht',
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.black,
