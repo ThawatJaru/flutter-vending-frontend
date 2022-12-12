@@ -108,11 +108,8 @@ class _PaymentPage extends State<PaymentPage> {
           'MQTT_LOGS:: New data arrived: topic is <${c[0].topic}>, payload is $pt');
       print('');
 
-      // Json Decode
-      final pt1 = json.decode(pt);
-
       // Statement get confirmed
-      if (pt1['statement_id'] == statement_id) {
+      if (pt == statement_id) {
         showConfirmMessageView();
         statement_confirm = true;
         client.disconnect();
