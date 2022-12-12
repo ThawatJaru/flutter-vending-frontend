@@ -16,7 +16,7 @@ class PaymentPage extends StatefulWidget {
     current_plant = plant;
     print(statement.statement_id);
     print(statement.status);
-    //MqttConnection();
+    MqttConnection();
   }
 
   @override
@@ -25,8 +25,9 @@ class PaymentPage extends StatefulWidget {
   //////////////////////////////////////////
 
   Future MqttConnection() async {
-    MqttServerClient client = MqttServerClient.withPort(
-        "projecttech.thddns.net", "flutter-client", 5050);
+    //MqttServerClient client = MqttServerClient.withPort(
+    //"projecttech.thddns.net", "flutter-client", 5050);
+    MqttServerClient client = MqttServerClient("localhost", "flutter-client");
     //client.logging(on: true);
 
     client.onConnected = onConnected;
@@ -69,7 +70,7 @@ class PaymentPage extends StatefulWidget {
 
   void subscribeTopic(MqttServerClient client) {
     print('MQTT_LOGS::Subscribing to the test topic');
-    const topic = 'test';
+    const topic = 'statement_confirm';
     client.subscribe(topic, MqttQos.atMostOnce);
 
     client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
@@ -81,6 +82,9 @@ class PaymentPage extends StatefulWidget {
       print(
           'MQTT_LOGS:: New data arrived: topic is <${c[0].topic}>, payload is $pt');
       print('');
+
+      //     showConfirmMessageView();
+
       client.disconnect();
     });
   }
@@ -112,6 +116,8 @@ class PaymentPage extends StatefulWidget {
     print('MQTT_LOGS:: Ping response client callback invoked');
   }
 }
+
+/////////////////////////////
 
 //class description
 class _PaymentPage extends State<PaymentPage> {
@@ -227,14 +233,6 @@ class _PaymentPage extends State<PaymentPage> {
                       ),
                     );
                   });
-                  /*
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                  );
-                  */
                 },
               ),
             ),
@@ -309,18 +307,20 @@ class _PaymentPage extends State<PaymentPage> {
             height: size.height * 0.60,
             //Testing QR code from webserver
             child: Container(
-                margin: const EdgeInsets.all(30.0),
-                //color: Colors.white,
-                decoration: new BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    image: new DecorationImage(
-                      fit: BoxFit.fill,
-                      image: new NetworkImage("https://promptpay.io/" +
-                          paypalTelNumber +
-                          "/" +
-                          paypalPrice +
-                          ".png"),
-                    ))),
+              margin: const EdgeInsets.all(30.0),
+              //color: Colors.white,
+              decoration: new BoxDecoration(
+                shape: BoxShape.rectangle,
+                image: new DecorationImage(
+                  fit: BoxFit.fill,
+                  image: new NetworkImage("https://promptpay.io/" +
+                      paypalTelNumber +
+                      "/" +
+                      paypalPrice +
+                      ".png"),
+                ),
+              ),
+            ),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 14.0),
@@ -346,7 +346,7 @@ class _PaymentPage extends State<PaymentPage> {
                 fontSize: 45.0,
                 fontWeight: FontWeight.bold),
           ),
-          TestButton()
+          TestButton(),
         ],
       ),
     );
