@@ -73,7 +73,7 @@ class _DescriptionPage extends State<DescriptionPage> {
                     ? Image.memory(
                         base64Decode(
                             widget.plant.plant_image.picture), //from Json
-                        fit: BoxFit.cover)
+                      )
                     : Image.asset(
                         'assets/images/plant_outdoor_ex.jpg'), //testing only
               ),
