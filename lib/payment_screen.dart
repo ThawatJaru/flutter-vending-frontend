@@ -1,33 +1,61 @@
+import 'dart:convert';
+
 import 'package:automated_ios/home_screen.dart';
+import 'package:automated_ios/main.dart';
 import 'package:automated_ios/plant_image.dart';
 import 'package:automated_ios/plant_item.dart';
 import 'package:automated_ios/plant_statement.dart';
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:http/http.dart' as http;
 
 PlantItem current_plant = new PlantItem("", "", "", "", new PlantImage(""), 0);
-String subscribed_message = "";
+String statement_id = "";
+bool statement_confirm = true;
 
 class PaymentPage extends StatefulWidget {
   final PlantStatement statement;
   final PlantItem plant;
   PaymentPage({super.key, required this.statement, required this.plant}) {
     current_plant = plant;
-    print(statement.statement_id);
-    print(statement.status);
-    MqttConnection();
+    statement_id = this.statement.statement_id;
+    statement_confirm = false;
   }
 
   @override
   State<PaymentPage> createState() => _PaymentPage();
+}
+
+/////////////////////////////
+
+//class description
+class _PaymentPage extends State<PaymentPage> {
+  String paypalTelNumber = "0970638685";
+  String paypalPrice = current_plant.price.toString();
+
+  bool showQRCode = true;
+  bool showConfirmPayment = false;
+  bool showArrowQRPaymentPage = true;
+  bool showArrowConfirmPaymentPage = false;
+
+  @override
+  Widget build(BuildContext context) {
+    //Size size = MediaQuery.of(context).size;
+    if (statement_confirm == false) MqttConnection();
+    return Scaffold(
+      body: Center(
+        child: PaymentPage(),
+      ),
+    );
+  }
 
   //////////////////////////////////////////
 
   Future MqttConnection() async {
-    //MqttServerClient client = MqttServerClient.withPort(
-    //"projecttech.thddns.net", "flutter-client", 5050);
-    MqttServerClient client = MqttServerClient("localhost", "flutter-client");
+    MqttServerClient client = MqttServerClient.withPort(
+        "projecttech.thddns.net", "flutter-client", 5052);
+    //MqttServerClient client = MqttServerClient("localhost", "flutter-client");
     //client.logging(on: true);
 
     client.onConnected = onConnected;
@@ -50,8 +78,6 @@ class PaymentPage extends StatefulWidget {
     // Try to Connect to broker
     try {
       await client.connect();
-      //client.onConnected;
-      //print("Connected");
     } catch (e) {
       print('Exception: $e');
       client.disconnect();
@@ -78,14 +104,19 @@ class PaymentPage extends StatefulWidget {
       final pt =
           MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
 
-      subscribed_message = pt;
       print(
           'MQTT_LOGS:: New data arrived: topic is <${c[0].topic}>, payload is $pt');
       print('');
 
-      //     showConfirmMessageView();
+      // Json Decode
+      final pt1 = json.decode(pt);
 
-      client.disconnect();
+      // Statement get confirmed
+      if (pt1['statement_id'] == statement_id) {
+        showConfirmMessageView();
+        statement_confirm = true;
+        client.disconnect();
+      }
     });
   }
 
@@ -114,29 +145,6 @@ class PaymentPage extends StatefulWidget {
 
   void pong() {
     print('MQTT_LOGS:: Ping response client callback invoked');
-  }
-}
-
-/////////////////////////////
-
-//class description
-class _PaymentPage extends State<PaymentPage> {
-  String paypalTelNumber = "0970638685";
-  String paypalPrice = current_plant.price.toString();
-
-  bool showQRCode = true;
-  bool showConfirmPayment = false;
-  bool showArrowQRPaymentPage = true;
-  bool showArrowConfirmPaymentPage = false;
-
-  @override
-  Widget build(BuildContext context) {
-    //Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Center(
-        child: PaymentPage(),
-      ),
-    );
   }
 
   //Show paymentPage true --> false
@@ -261,9 +269,9 @@ class _PaymentPage extends State<PaymentPage> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(backgroundColor: Colors.lightBlue),
       onPressed: () {
-        showConfirmMessageView();
+        notify_payment();
       },
-      child: const Text('Press Button'),
+      child: const Text('Notify'),
     );
   }
 
@@ -350,5 +358,23 @@ class _PaymentPage extends State<PaymentPage> {
         ],
       ),
     );
+  }
+
+  // Post Request --> notify
+  // Body: {
+  //    "statement_id": UUID
+  // }
+  // return "Success"
+  dynamic notify_payment() async {
+    var url = '$PLANT_HOST/statement_confirm';
+    final response = await http.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{'statement_id': statement_id}),
+    );
+
+    return response.statusCode;
   }
 }
