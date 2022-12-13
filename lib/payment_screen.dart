@@ -10,7 +10,8 @@ import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:http/http.dart' as http;
 
-PlantItem current_plant = new PlantItem("", "", "", "", new PlantImage(""), 0);
+PlantItem current_plant =
+    new PlantItem("", "", "", "", new PlantImage(""), 0, "");
 String statement_id = "";
 bool statement_confirm = true;
 

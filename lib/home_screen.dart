@@ -31,6 +31,9 @@ class _HomeScreen extends State<HomeScreen> {
     //add each item into empty list for displaying it in UI
     //for (int i = 0; i < 30; i++) {
     for (var p in data) {
+      // Skip Status = 'Sold' Case
+      if (p['status'] == 'Sold') continue;
+
       //condition no description
       p['description'] = p['description'] ?? 'No Description Available';
       //condition no picture
@@ -64,7 +67,8 @@ class _HomeScreen extends State<HomeScreen> {
               p['description'].toString(),
               p['category'].toString(),
               current_image,
-              p['price']);
+              p['price'],
+              p['status']);
         } else {
           if (searchCategory == 1 && p['category'].toString() == 'Indoor') {
             //Indoor
@@ -74,7 +78,8 @@ class _HomeScreen extends State<HomeScreen> {
                 p['description'].toString(),
                 p['category'].toString(),
                 current_image,
-                p['price']);
+                p['price'],
+                p['status']);
           } else if (searchCategory == 2 &&
               p['category'].toString() == 'Outdoor') {
             //Outdoor
@@ -84,7 +89,8 @@ class _HomeScreen extends State<HomeScreen> {
                 p['description'].toString(),
                 p['category'].toString(),
                 current_image,
-                p['price']);
+                p['price'],
+                p['status']);
           }
         }
         PlantItems.add(plantItem);
@@ -537,7 +543,7 @@ class _HomeScreen extends State<HomeScreen> {
                     } else {
                       return const Center(
                         child: Text(
-                          'The product you searched for was not found.\n Please Try Again',
+                          'The product is not available. Please Try again',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 32.0,

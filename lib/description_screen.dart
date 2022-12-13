@@ -8,7 +8,8 @@ import 'package:automated_ios/plant_statement.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-PlantItem current_plant = new PlantItem("", "", "", "", new PlantImage(""), 0);
+PlantItem current_plant =
+    new PlantItem("", "", "", "", new PlantImage(""), 0, "");
 
 class DescriptionPage extends StatefulWidget {
   final PlantItem plant;
