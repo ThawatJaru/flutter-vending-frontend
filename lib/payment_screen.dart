@@ -267,9 +267,6 @@ class _PaymentPage extends State<PaymentPage> {
       style: ElevatedButton.styleFrom(backgroundColor: Colors.lightBlue),
       onPressed: () {
         notify_payment();
-        // Complete the payment process: Temp Code
-        showConfirmMessageView();
-        statement_confirm = true;
       },
       child: const Text('Notify'),
     );
@@ -374,6 +371,10 @@ class _PaymentPage extends State<PaymentPage> {
       },
       body: jsonEncode(<String, String>{'statement_id': statement_id}),
     );
+
+    // Complete the payment process: Temp Code
+    showConfirmMessageView();
+    statement_confirm = true;
 
     return response.statusCode;
   }
