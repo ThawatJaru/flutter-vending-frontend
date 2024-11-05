@@ -11,4 +11,6 @@ This repository contains the Flutter-based frontend for a plant-selecting vendin
 - Hardware Component
 - Database Backend
 
-**Note: This repository only contains the frontend Flutter code. This version has been migrated to react.js instead. Please proceed to this link to explore on migrated version https://github.com/ThawatJaru/react-vending-frontend*
+**Note: This repository only contains the frontend Flutter code. So it might not work completely **
+
+[Vsiit my Figma Design for this project](https://www.figma.com/design/ZHPLP8AvMk2GZoIJEW9vYx/Automated_Plant_Shop-First-Design?node-id=0-1&node-type=canvas&t=xmQsUKv2l0M9C0Z2-0)
