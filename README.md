@@ -1,16 +1,14 @@
-# automated_ios
+# Plant Vending Machine - Flutter Frontend
+This repository contains the Flutter-based frontend for a plant-selecting vending machine. The application provides a user-friendly interface for browsing and selecting plants, which integrates with the hardware component and a database backend to deliver a seamless vending experience.
 
-A new Flutter project.
+# Features
+- Intuitive Plant Selection
+- Real-Time Interaction
+- Database-Driven Catalog
 
-## Getting Started
+# Architecture Overview
+- Flutter Frontend (this repository)
+- Hardware Component
+- Database Backend
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Note: This repository only contains the frontend Flutter code and has currently change and migrate to React.js. Please proceed to this link to explore on migrated version https://github.com/ThawatJaru/react-vending-frontend*
