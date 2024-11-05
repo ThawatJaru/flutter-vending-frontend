@@ -11,4 +11,4 @@ This repository contains the Flutter-based frontend for a plant-selecting vendin
 - Hardware Component
 - Database Backend
 
-**Note: This repository only contains the frontend Flutter code and has currently change and migrate to React.js. Please proceed to this link to explore on migrated version https://github.com/ThawatJaru/react-vending-frontend*
+**Note: This repository only contains the frontend Flutter code. This version has been migrated to react.js instead. Please proceed to this link to explore on migrated version https://github.com/ThawatJaru/react-vending-frontend*
